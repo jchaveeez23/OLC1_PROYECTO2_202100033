@@ -1,0 +1,380 @@
+/* Variables globales del tema */
+:root {
+  --bg-primary: #1e1e2e;
+  --bg-secondary: #181825;
+  --bg-tertiary: #11111b;
+  --text-primary: #cdd6f4;
+  --text-secondary: #a6adc8;
+  --accent-primary: #89b4fa;
+  --accent-secondary: #74c7ec;
+  --accent-highlight: #cba6f7;
+  --error-color: #f38ba8;
+  --success-color: #a6e3a1;
+  --warning-color: #f9e2af;
+}
+
+/* Estilos generales */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Layout vertical de la aplicación */
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+}
+
+/* Contenedor principal que ocupa todo el espacio disponible menos el header */
+.app-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Header y barra de herramientas */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--accent-primary);
+}
+
+.tools-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Botones de herramientas */
+.tool-button {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tool-button:hover {
+  background-color: rgba(137, 180, 250, 0.2);
+  color: var(--accent-primary);
+}
+
+.tool-button.primary {
+  background-color: var(--accent-primary);
+  color: var(--bg-tertiary);
+}
+
+.tool-button.primary:hover {
+  background-color: var(--accent-secondary);
+}
+
+/* Layout principal */
+.main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.editor-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
+/* Contenedor del editor - ocupa todo el espacio disponible */
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Textarea del editor - ocupa todo el espacio disponible en su contenedor */
+.editor-textarea {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-family: 'Consolas', monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+.tabs-container {
+  display: flex;
+  background-color: var(--bg-secondary);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-secondary);
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.tab.active {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-top: 2px solid var(--accent-primary);
+}
+
+.tab .close-icon {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.tab:hover .close-icon {
+  opacity: 1;
+}
+
+.monaco-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Contenedor de resultados - ocupa todo el espacio disponible */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.results-tabs {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+.result-content {
+  flex: 1;
+  width: 100%;
+  overflow: auto;
+  padding: 0 1rem 1rem 1rem; /* Quita el padding superior, mantiene el resto */
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Panel de resultados */
+.results-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.result-tab {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.result-tab.active {
+  color: var(--accent-primary);
+  border-bottom: 2px solid var(--accent-primary);
+}
+
+/* Fuerza que el contenido de resultados ocupe todo el ancho */
+.result-content {
+  flex: 1;
+  width: 100%;
+  overflow: auto;
+  padding: 0 1rem 1rem 1rem; /* Quita el padding superior, mantiene el resto */
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Consola */
+.consola {
+  background-color: var(--bg-tertiary);
+  color: #a6e3a1;
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  white-space: pre-wrap;
+  height: 100%;
+  overflow: auto;
+  line-height: 1.4;
+}
+
+/* Tablas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+th, td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+
+thead {
+  background-color: var(--bg-tertiary);
+  position: sticky;
+  top: 0;
+}
+
+th {
+  color: var(--accent-secondary);
+  font-weight: normal;
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Error indicators */
+.error-line {
+  background-color: rgba(243, 139, 168, 0.2);
+  position: absolute;
+}
+
+.error-message {
+  color: var(--error-color);
+}
+
+/* Insignia de error */
+.error-badge {
+  margin-left: 5px;
+  background-color: var(--error-color);
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .tools-container {
+    flex-wrap: wrap;
+  }
+}
+
+/* Split Pane Customization */
+.Resizer {
+  background: #000;
+  opacity: 0.2;
+  z-index: 1;
+  box-sizing: border-box;
+  background-clip: padding-box;
+}
+
+.Resizer.horizontal {
+  height: 5px;
+  margin: 0;
+  border-top: none;
+  border-bottom: none;
+  cursor: row-resize;
+  width: 100%;
+  background-color: #000;  /* Cambiado a negro sólido */
+}
+
+.Resizer.horizontal:hover,
+.Resizer.horizontal.resizing {
+  background-color: #333;  /* Un gris oscuro al pasar el mouse */
+}
+
+/* AST SVG improvements */
+svg {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos para scrollbars personalizados */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
